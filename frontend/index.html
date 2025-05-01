@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>POC Áudio</title>
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+</head>
+<body>
+  <h1>Áudio de acessibilidade</h1>
+  <audio id="player" controls></audio>
+
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <script>
+    const player = new Plyr("#player");
+
+    async function carregarAudio() {
+      const response = await fetch("http://localhost:5000/audios/site123/home");
+      const data = await response.json();
+      document.getElementById("player").src = data.audio_url;
+    }
+
+    carregarAudio();
+  </script>
+</body>
+</html>
